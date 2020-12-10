@@ -18,58 +18,64 @@ function init () {
   function managerQuestions() {
     inquirer
     .prompt([
-      { 
+        { 
         type: "input",
         message: "What is your manager's name?",
         name: "managerName",  
            },
-      { 
+        { 
         type: "input",
         message: "What is your manager's id?",
         name: "managerId",  
            },
-      {
+        {
          type: "input",
          message: "What is your manager's email?",
          name: "managerEmail",
-      },
-      {
+          },
+       {
         type: "input",
         message: "What is your manager's office number?",
         name: "managerOffice",
-     },
-    ])
+          },
+      ])
     .then(() => {
       verifyNewEmp()});
-    
+   
       function verifyNewEmp() {
         inquirer
        .prompt ({
-          type: "checkbox",
+          type: "list",
           message: "What type of team member would you like to add?",
-          choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
+          choices: ["Engineer", "Intern", "I don't want to add anymore team members."],
           name: "employeeType",
-      },)
-  
-      .then(
-        switch("employeeType") {
-         case Engineer:
-           nextEmp = engineerQuestions();
-           break;
-         case Intern:
-           nextEmp = internQuestions();
-           break;
-           case Manager:
-           nextEmp = managerQuestions();
-           break;
-           default:
-           nextEmp = inquirer.then((response) => {
-           return fs.writeFileSync(outputPath, render(response));
-               });
-            }
-         }) 
-       }
-     }
+        })
+       
+      .then(function selectNext() {
+        console.log(employeeType.list)
+        if (employeeType.list === 0) {
+          engineerQuestions();
+        }
+        if (employeeType.list === 1) {
+          internQuestions();
+        }
+        if (employeeType.list === 2) {
+          (response) => {
+            return fs.writeFileSync(outputPath, render(response));
+            }      
+        }
+        // switch () {
+        //  case Engineer:
+        //    answer.employeeType = 
+        //    break;
+        //  case Intern:
+        //    answer.employeeType = internQuestions();
+        //    break;
+        //    default:
+        //       (response) => {
+        //       return fs.writeFileSync(outputPath, render(response));
+        //       }      
+        //   }
 
     function engineerQuestions() {
     inquirer
@@ -94,12 +100,11 @@ function init () {
         message: "What is your engineer's GitHub username?",
         name: "engineerGitHub"
       },
-     
     ])
-    .then((response) => {
-    verifyNewEmp();
-    });
-  }
+    .then(() => {
+      verifyNewEmp()
+      });
+    };
     
     function internQuestions() {
     inquirer
@@ -125,11 +130,14 @@ function init () {
         name: "internSchool"
       },
       ])
-    .then((response) => {
-    verifyNewEmp();
-    }); 
+    .then(() => {
+      verifyNewEmp()
+      })
+      };
+  });
 }
-
+  }
+}
 init();
 
   // After the user has input all employees desired, call the `render` function (required
@@ -142,7 +150,7 @@ init();
   // Hint: you may need to check if the `output` folder exists and create it if it
   // does not.
   
-  // HINT: each employee type (manager, engineer, or intern) has slightly different
+  // HINT: each employee type (managser, engineer, or intern) has slightly different
   // information; write your code to ask different questions via inquirer depending on
   // employee type.
   
