@@ -14,8 +14,12 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-inquirer
+function managerQuestions() {
+  
+
+  inquirer
   .prompt([
+   
     { 
       type: "input",
       message: "What is your manager's name?",
@@ -36,58 +40,40 @@ inquirer
       message: "What is your manager's office number?",
       name: "managerOffice",
    },
-    {
+  
+ 
+  ])
+
+  .then((response) => {
+    return fs.writeFileSync(outputPath, render(response));
+  });
+}
+
+function verifyNewEmp() {
+     inquirer
+    .prompt ({
+       type: "checkbox",
+       message: "What type of team member would you like to add?",
+       choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
+       name: "employeeType",
+   },)
+   .then(res => {
+     switch 
+   }) 
+ }
+
+manager();
+}
+
+
+ function verifyNewEmp() {
+   {
         type: "checkbox",
         message: "What type of team member would you like to add?",
         choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
         name: "employeeType",
     },
-    {
-        type: "input",
-        message: "What is your intern's name?",
-        name: "internName",
-    },
-    {
-        type: "input",
-        message: "What is your intern's id?",
-        name: "internId",
-    },
-   {
-        type: "input",
-        message: "What is your intern's email?",
-        name: "internEmail"
-    },
-    {
-        type: "input",
-        message: "What is your intern's school?",
-        name: "internSchool"
-    },
-    {
-        type: "input",
-        message: "What is your engineer's name?",
-        name: "engineerName",
-    },
-    {
-        type: "input",
-        message: "What is your engineer's id?",
-        name: "engineerId",
-    },
-   {
-        type: "input",
-        message: "What is your engineer's email?",
-        name: "engineerEmail"
-    },
-    {
-        type: "input",
-        message: "What is your engineer's GitHub username?",
-        name: "engineerGitHub"
-    },
-  ])
-  .then((response) => {
-    return //fs.writeFileSync(path.join (process.cwd(), "README.md"), generate(response));
-  });
-}
-
+  }
 init();
 
 // After the user has input all employees desired, call the `render` function (required
@@ -109,3 +95,44 @@ init();
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+// {
+//   type: "input",
+//   message: "What is your intern's name?",
+//   name: "internName",
+// },
+// {
+//   type: "input",
+//   message: "What is your intern's id?",
+//   name: "internId",
+// },
+// {
+//   type: "input",
+//   message: "What is your intern's email?",
+//   name: "internEmail"
+// },
+// {
+//   type: "input",
+//   message: "What is your intern's school?",
+//   name: "internSchool"
+// },
+// {
+//   type: "input",
+//   message: "What is your engineer's name?",
+//   name: "engineerName",
+// },
+// {
+//   type: "input",
+//   message: "What is your engineer's id?",
+//   name: "engineerId",
+// },
+// {
+//   type: "input",
+//   message: "What is your engineer's email?",
+//   name: "engineerEmail"
+// },
+// {
+//   type: "input",
+//   message: "What is your engineer's GitHub username?",
+//   name: "engineerGitHub"
+// },
