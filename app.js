@@ -43,7 +43,64 @@ function init () {
     .then((response) => {
       verifyNewEmp();
     });
-  
+
+    function engineerQuestions() {
+    inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your engineer's name?",
+        name: "engineerName",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's id?",
+        name: "engineerId",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's email?",
+        name: "engineerEmail"
+      },
+      {
+        type: "input",
+        message: "What is your engineer's GitHub username?",
+        name: "engineerGitHub"
+      },
+     
+    ])
+    .then((response) => {
+    verifyNewEmp();
+    });
+    
+    function internQuestions() {
+    inquirer
+   .prompt([
+      {
+       type: "input",
+        message: "What is your intern's name?",
+        name: "internName",
+      },
+      {
+        type: "input",
+        message: "What is your intern's id?",
+        name: "internId",
+      },
+      {
+        type: "input",
+        message: "What is your intern's email?",
+        name: "internEmail"
+      },
+      {
+        type: "input",
+        message: "What is your intern's school?",
+        name: "internSchool"
+      },
+      ])
+    .then((response) => {
+    verifyNewEmp();
+    });
+
   function verifyNewEmp() {
        inquirer
       .prompt ({
@@ -52,29 +109,35 @@ function init () {
          choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
          name: "employeeType",
      },)
-  
+ 
      .then((response) => {
        switch("employeeType") {
         case Engineer:
-          nextEmp = ;
+          nextEmp = engineerQuestions();
           break;
         case Intern:
-          day = ;
+          nextEmp = internQuestions();
           break;
           case Manager:
-          day = ;
+          nextEmp = managerQuestions();
           break;
           default:
-          .then((response) => {
+          nextEmp = endInq
+          }
+
+          async function endInq() {
+          inquirer.then((response) => {
           return fs.writeFileSync(outputPath, render(response));
               });
-          }
+           }
         }) 
       }
     }
   }
+}
+}
   init();
-  
+
   // After the user has input all employees desired, call the `render` function (required
   // above) and pass in an array containing all employee objects; the `render` function will
   // generate and return a block of HTML including templated divs for each employee!
@@ -93,45 +156,4 @@ function init () {
   // and Intern classes should all extend from a class named Employee; see the directions
   // for further information. Be sure to test out each class and verify it generates an
   // object with the correct structure and methods. This structure will be crucial in order
-  // for the provided `render` function to work! ```
-  
-  // {
-  //   type: "input",
-  //   message: "What is your intern's name?",
-  //   name: "internName",
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your intern's id?",
-  //   name: "internId",
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your intern's email?",
-  //   name: "internEmail"
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your intern's school?",
-  //   name: "internSchool"
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your engineer's name?",
-  //   name: "engineerName",
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your engineer's id?",
-  //   name: "engineerId",
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your engineer's email?",
-  //   name: "engineerEmail"
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is your engineer's GitHub username?",
-  //   name: "engineerGitHub"
-  // },
+  // for the provided `render` function to work! 
