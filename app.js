@@ -15,7 +15,6 @@ function init () {
   // and to create objects for each team member (using the correct classes as blueprints!)
   
   managerQuestions();
-  
   function managerQuestions() {
     inquirer
     .prompt([
@@ -40,9 +39,37 @@ function init () {
         name: "managerOffice",
      },
     ])
-    .then((response) => {
-      verifyNewEmp();
-    });
+    .then(() => {
+      verifyNewEmp()});
+    
+      function verifyNewEmp() {
+        inquirer
+       .prompt ({
+          type: "checkbox",
+          message: "What type of team member would you like to add?",
+          choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
+          name: "employeeType",
+      },)
+  
+      .then(
+        switch("employeeType") {
+         case Engineer:
+           nextEmp = engineerQuestions();
+           break;
+         case Intern:
+           nextEmp = internQuestions();
+           break;
+           case Manager:
+           nextEmp = managerQuestions();
+           break;
+           default:
+           nextEmp = inquirer.then((response) => {
+           return fs.writeFileSync(outputPath, render(response));
+               });
+            }
+         }) 
+       }
+     }
 
     function engineerQuestions() {
     inquirer
@@ -72,6 +99,7 @@ function init () {
     .then((response) => {
     verifyNewEmp();
     });
+  }
     
     function internQuestions() {
     inquirer
@@ -99,44 +127,10 @@ function init () {
       ])
     .then((response) => {
     verifyNewEmp();
-    });
-
-  function verifyNewEmp() {
-       inquirer
-      .prompt ({
-         type: "checkbox",
-         message: "What type of team member would you like to add?",
-         choices: ["Engineer", "Intern", "Manager", "I don't want to add anymore team members."],
-         name: "employeeType",
-     },)
- 
-     .then((response) => {
-       switch("employeeType") {
-        case Engineer:
-          nextEmp = engineerQuestions();
-          break;
-        case Intern:
-          nextEmp = internQuestions();
-          break;
-          case Manager:
-          nextEmp = managerQuestions();
-          break;
-          default:
-          nextEmp = endInq
-          }
-
-          async function endInq() {
-          inquirer.then((response) => {
-          return fs.writeFileSync(outputPath, render(response));
-              });
-           }
-        }) 
-      }
-    }
-  }
+    }); 
 }
-}
-  init();
+
+init();
 
   // After the user has input all employees desired, call the `render` function (required
   // above) and pass in an array containing all employee objects; the `render` function will
