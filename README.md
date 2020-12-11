@@ -1,6 +1,6 @@
 # NodeCLI-TemplateEngine
 
-[Here is a link to the video for Graders](https://www.youtube.com/)
+[Here is a link to the video for Graders](https://youtu.be/RKQtEu0Da1Y)
 
 ## Table of Contents:
   1. [Description](#description) 
@@ -42,4 +42,4 @@ EsmondKim (https://github.com/EsmondKim)
 ekelectronicmail@gmail.com
 
 ## Link to Video
-[Here is a link to the video](https://www.youtube.com/)
+[Here is a link to the video](https://youtu.be/RKQtEu0Da1Y)
