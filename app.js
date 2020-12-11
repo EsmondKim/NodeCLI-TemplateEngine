@@ -41,7 +41,6 @@ function init () {
           },
       ])
     .then(ans => {
-      console.log(ans);
       const newManager = new Manager(ans.managerName, ans.managerId, ans.managerEmail, ans.managerOffice);
       teamArray.push(newManager);
       verifyNewEmp()});
@@ -56,7 +55,6 @@ function init () {
         })
        
       .then(function selectNext(ans) {
-        console.log(ans.employeeType);
         if (ans.employeeType === "Engineer") {
           engineerQuestions();
         }
@@ -64,8 +62,6 @@ function init () {
           internQuestions();
         }
         if (ans.employeeType === "Finished") {
-            console.log("Success!");
-            console.log(teamArray);
             return fs.writeFileSync(outputPath, render(teamArray));      
         }
         
@@ -94,7 +90,6 @@ function init () {
       },
     ])
     .then(ans => {
-      console.log(ans);
       const newEngineer = new Engineer(ans.engineerName, ans.engineerId, ans.engineerEmail, ans.engineerGitHub);
       teamArray.push(newEngineer);
       verifyNewEmp()
@@ -126,7 +121,6 @@ function init () {
       },
       ])
     .then(ans => {
-      console.log(ans);
       const newIntern = new Intern(ans.internName, ans.internId, ans.internEmail, ans.internSchool);
       teamArray.push(newIntern);
       verifyNewEmp()
