@@ -6,7 +6,8 @@ function init () {
   const inquirer = require("inquirer");
   const path = require("path");
   const fs = require("fs");
-  
+  const teamArray = [];
+
   const OUTPUT_DIR = path.resolve(__dirname, "output");
   const outputPath = path.join(OUTPUT_DIR, "team.html");
   
@@ -39,7 +40,10 @@ function init () {
         name: "managerOffice",
           },
       ])
-    .then(() => {
+    .then(ans => {
+      console.log(ans);
+      const newManager = new Manager(ans.managerName, ans.managerId, ans.managerEmail, ans.managerOffice);
+      teamArray.push(newManager);
       verifyNewEmp()});
    
       function verifyNewEmp() {
@@ -47,36 +51,24 @@ function init () {
        .prompt ({
           type: "list",
           message: "What type of team member would you like to add?",
-          choices: ["Engineer", "Intern", "I don't want to add anymore team members."],
+          choices: ["Engineer", "Intern", "Finished"],
           name: "employeeType",
         })
        
-      .then(function selectNext() {
-        console.log(employeeType.list)
-        if (employeeType.list === 0) {
+      .then(function selectNext(ans) {
+        console.log(ans.employeeType);
+        if (ans.employeeType === "Engineer") {
           engineerQuestions();
         }
-        if (employeeType.list === 1) {
+        if (ans.employeeType === "Intern") {
           internQuestions();
         }
-        if (employeeType.list === 2) {
-          (response) => {
-            return fs.writeFileSync(outputPath, render(response));
-            }      
+        if (ans.employeeType === "Finished") {
+            console.log("Success!");
+            console.log(teamArray);
+            return fs.writeFileSync(outputPath, render(teamArray));      
         }
-        // switch () {
-        //  case Engineer:
-        //    answer.employeeType = 
-        //    break;
-        //  case Intern:
-        //    answer.employeeType = internQuestions();
-        //    break;
-        //    default:
-        //       (response) => {
-        //       return fs.writeFileSync(outputPath, render(response));
-        //       }      
-        //   }
-
+        
     function engineerQuestions() {
     inquirer
     .prompt([
@@ -101,7 +93,10 @@ function init () {
         name: "engineerGitHub"
       },
     ])
-    .then(() => {
+    .then(ans => {
+      console.log(ans);
+      const newEngineer = new Engineer(ans.engineerName, ans.engineerId, ans.engineerEmail, ans.engineerGitHug);
+      teamArray.push(newEngineer);
       verifyNewEmp()
       });
     };
@@ -130,32 +125,16 @@ function init () {
         name: "internSchool"
       },
       ])
-    .then(() => {
+    .then(ans => {
+      console.log(ans);
+      const newIntern = new Intern(ans.internName, ans.internId, ans.internEmail, ans.internSchool);
+      teamArray.push(newIntern);
       verifyNewEmp()
-      })
+        })
       };
-  });
-}
+    });
   }
+}
 }
 init();
 
-  // After the user has input all employees desired, call the `render` function (required
-  // above) and pass in an array containing all employee objects; the `render` function will
-  // generate and return a block of HTML including templated divs for each employee!
-  
-  // After you have your html, you're now ready to create an HTML file using the HTML
-  // returned from the `render` function. Now write it to a file named `team.html` in the
-  // `output` folder. You can use the variable `outputPath` above target this location.
-  // Hint: you may need to check if the `output` folder exists and create it if it
-  // does not.
-  
-  // HINT: each employee type (managser, engineer, or intern) has slightly different
-  // information; write your code to ask different questions via inquirer depending on
-  // employee type.
-  
-  // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-  // and Intern classes should all extend from a class named Employee; see the directions
-  // for further information. Be sure to test out each class and verify it generates an
-  // object with the correct structure and methods. This structure will be crucial in order
-  // for the provided `render` function to work! 
