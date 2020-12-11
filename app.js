@@ -95,7 +95,7 @@ function init () {
     ])
     .then(ans => {
       console.log(ans);
-      const newEngineer = new Engineer(ans.engineerName, ans.engineerId, ans.engineerEmail, ans.engineerGitHug);
+      const newEngineer = new Engineer(ans.engineerName, ans.engineerId, ans.engineerEmail, ans.engineerGitHub);
       teamArray.push(newEngineer);
       verifyNewEmp()
       });
