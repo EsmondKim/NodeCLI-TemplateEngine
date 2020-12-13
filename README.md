@@ -25,7 +25,8 @@ The Template Engine requires installation of Node.js.  Dependencies include Inqu
 ## Usage
 
 To use the Template Engine, install and run: "node app.js" in the terminal, and answer the prompts.  After the prompts are answered, open the team.html file from the "output" directory.
-
+![Here is a screenshot of the program running in the VS Code console.](./assets/images/screenshotrun.jpg)
+![Here is a screenshot of the rendered HTML page.](./assets/images/screenshotrendered.jpg)
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
