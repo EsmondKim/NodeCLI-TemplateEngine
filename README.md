@@ -1,6 +1,6 @@
 # NodeCLI-TemplateEngine
 
-[Here is a link to the video for Graders](https://youtu.be/RKQtEu0Da1Y)
+[Here is a link to a YouTube Demo Video for this app.](https://www.youtube.com/watch?v=D3j26aPMIOk)
 
 ## Table of Contents:
 
@@ -15,7 +15,10 @@
 
 ## Description
 
-A Node.js Template Engine that forms a directory of work team members. The Template Engine's code utilizes Object Oriented Programming. The project also contains a test directory contining test.js files that utilize Jest.
+A Node.js Template Engine that forms a directory of work team members. The Template Engine's code utilizes Object Oriented Programming. The project also contains a test directory containing test.js files that utilize Jest.
+
+Deployed website:
+[Here is a link to a deployed website built using this Template Engine](https://esmondkim.github.io/NodeCLI-TemplateEngine/)
 
 Sceenshots
 ![Here is a screenshot of the code tests passing.](./assets/images/screenshot1.jpg)
@@ -23,7 +26,7 @@ Sceenshots
 
 ## Installation
 
-The Template Engine requires installation of Node.js. Dependencies include Inquirer, and Jest for testing. Users must also have access to a IDE such as Visual Studio Code with access to the terminal or access to GitBash/Command Line Interface to run Node.
+The Template Engine requires installation of Node.js. Dependencies also include Inquirer, and Jest for testing. Users must also have access to an IDE such as Visual Studio Code with access to the terminal or access to GitBash/Command Line Interface to run Node.
 
 ## Usage
 
@@ -50,7 +53,3 @@ EsmondKim (https://github.com/EsmondKim)
 ## E-mail
 
 ekelectronicmail@gmail.com
-
-## Link to Video
-
-[Here is a link to the video](https://youtu.be/RKQtEu0Da1Y)
