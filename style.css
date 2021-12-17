@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  border: 2.5px solid #abdcef;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.employee-card {
+  width: 300px;
+}
